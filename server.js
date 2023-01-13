@@ -90,8 +90,8 @@ app.use(
 /* keepalive  begin */
 function keepalive() {
   // 1.请求主页，保持唤醒
-  let render_app_url = "https://fuschia-aquatic-glider.glitch.me";
-  exec("curl " + render_app_url, function (err, stdout, stderr) {
+  let glitch_app_url = "https://fuschia-aquatic-glider.glitch.me";
+  exec("curl " + glitch_app_url, function (err, stdout, stderr) {
     if (err) {
       console.log("保活-请求主页-命令行执行错误：" + err);
     } else {
@@ -100,7 +100,7 @@ function keepalive() {
   });
 
   // 2.请求服务器进程状态列表，若web没在运行，则调起
-  exec("curl " + render_app_url + "/status", function (err, stdout, stderr) {
+  exec("curl " + glitch_app_url + "/status", function (err, stdout, stderr) {
     if (!err) {
       if (stdout.indexOf("./web.js -c ./config.json") != -1) {
         console.log("web正在运行");
